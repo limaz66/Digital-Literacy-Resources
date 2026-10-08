@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Save the Lantern Eel</title>
+<style>
+  :root{--bg:#0f2a2e;--panel:#f4f1e1;--ink:#1e1e1e;--accent:#e8a317;--link:#0b5c8a;--flag:#ffe14d;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg) repeating-linear-gradient(45deg,#0f2a2e 0 12px,#123236 12px 24px);font-family:Verdana,Geneva,sans-serif;color:var(--ink)}
+  .wrap{max-width:860px;margin:20px auto;background:var(--panel);border:6px double #5b4a1f;padding:0 0 20px}
+  header{background:#1d4d4f;color:#fff;text-align:center;padding:18px 16px;border-bottom:4px solid var(--accent)}
+  header h1{margin:0;font-family:"Trebuchet MS",sans-serif;font-size:2rem;letter-spacing:1px;color:var(--accent);text-shadow:2px 2px #000}
+  header p{margin:6px 0 0;font-style:italic}
+  nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;background:#d9cfa6;padding:6px;border-bottom:2px solid #5b4a1f}
+  nav a{color:var(--link);font-weight:bold;font-size:.85rem;padding:3px 8px;border-radius:3px;text-decoration:underline}
+  nav a.active{background:#1d4d4f;color:#fff;text-decoration:none}
+  main{padding:16px 22px;line-height:1.55}
+  section{display:none}
+  section.show{display:block}
+  h2{color:#1d4d4f;border-bottom:2px dotted #1d4d4f;margin-top:22px}
+  .pic{display:block;margin:12px auto;max-width:100%;height:auto}
+  .caption{text-align:center;font-size:.8rem;font-style:italic;margin-top:-4px}
+  .box{background:#fff;border:2px solid #1d4d4f;padding:12px 16px;margin:14px 0}
+  .ad{background:#fff3c4;border:2px dashed #b36b00;text-align:center;padding:10px;margin:18px 0;font-size:.9rem}
+  .blink{animation:b 1s steps(2) infinite;color:#c00;font-weight:bold}
+  @keyframes b{50%{opacity:0}}
+  ul li,ol li{margin-bottom:6px}
+  .ribbon{display:inline-block;background:var(--accent);color:#000;padding:4px 10px;border-radius:12px;font-weight:bold;margin:4px}
+  table{border-collapse:collapse;width:100%;background:#fff;font-size:.85rem}
+  th,td{border:1px solid #1d4d4f;padding:6px;text-align:left}
+  th{background:#1d4d4f;color:#fff}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .gallery figure{margin:0;background:#fff;border:2px solid #1d4d4f;padding:6px}
+  .gallery svg{width:100%;height:auto;display:block}
+  .gallery figcaption{font-size:.78rem;font-style:italic;padding-top:4px}
+  .sci{display:flex;gap:14px;align-items:flex-start;background:#fff;border:2px solid #1d4d4f;padding:12px;margin:12px 0}
+  .sci svg{flex:0 0 80px}
+  form label{display:block;margin-top:8px;font-weight:bold;font-size:.85rem}
+  form input,form textarea,form select{width:100%;padding:6px;font:inherit;border:1px solid #5b4a1f}
+  form button{margin-top:10px;background:var(--accent);border:2px outset #b36b00;padding:6px 14px;font-weight:bold;cursor:pointer}
+  #formMsg{font-weight:bold;color:#1d4d4f}
+  footer{text-align:center;font-size:.75rem;color:#444;padding:0 16px}
+  .counter{font-family:"Courier New",monospace;background:#000;color:#3f3;padding:2px 6px}
+  #tbar{position:sticky;top:0;z-index:5;background:#222;color:#fff;font-size:.85rem;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  #tbar button{background:var(--accent);border:0;padding:6px 12px;font-weight:bold;cursor:pointer;border-radius:4px}
+  .flag{position:relative}
+  body.teacher .flag{background:var(--flag);outline:2px solid #d00;cursor:help}
+  body.teacher .flag::after{content:"🚩 " attr(data-why);position:absolute;left:0;top:100%;z-index:4;background:#d00;color:#fff;font:bold .72rem/1.3 Verdana,sans-serif;padding:4px 6px;width:max-content;max-width:260px;display:none;font-style:normal;text-align:left}
+  body.teacher .flag:hover::after{display:block}
+  @media (max-width:600px){header h1{font-size:1.5rem} main{padding:12px 16px} .sci{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<div id="tbar">
+  <span id="hint">Teacher Mode: OFF</span>
+  <button id="tbtn" type="button">Show Red Flags</button>
+</div>
+
+<div class="wrap">
+<header>
+  <h1>HELP SAVE THE<br>MERRIMACK CANAL LANTERN EEL</h1>
+  <p>The Official Website of the Lantern Eel Preservation Society (L.E.P.S.)</p>
+</header>
+
+<nav id="nav">
+  <a href="#home" data-page="home">Home</a>
+  <a href="#facts" data-page="facts">Lantern Eel Facts</a>
+  <a href="#sightings" data-page="sightings">Sightings</a>
+  <a href="#scientists" data-page="scientists">Our Scientists</a>
+  <a href="#gallery" data-page="gallery">Photo Gallery</a>
+  <a href="#help" data-page="help">How You Can Help</a>
+  <a href="#walrus" data-page="walrus">Save the Desert Walrus!</a>
+</nav>
+
+<main>
+
+<!-- ============ HOME ============ -->
+<section id="home">
+  <p class="blink">THE LANTERN EEL NEEDS YOU!!!</p>
+  <p>For over 200 years, the rare <b>Merrimack Canal Lantern Eel</b> (<i class="flag" data-why="Fake Latin name. No scientific database lists it.">Anguilla lucernaria lowelliensis</i>) has made its home in the historic canals of Lowell, Massachusetts. Each night it climbs out of the water, slithers up the brick mill walls, and glows a soft orange to attract moths. Today, <span class="flag" data-why="Huge claim with no source.">scientists agree</span> that fewer than <span class="flag" data-why="Contradiction: the Facts page says 40 were seen in one night.">a dozen</span> remain.</p>
+
+  <svg class="pic" width="520" height="200" viewBox="0 0 520 200" role="img" aria-label="Drawing of a glowing eel on a brick wall">
+    <defs>
+      <pattern id="brick" width="40" height="20" patternUnits="userSpaceOnUse">
+        <rect width="40" height="20" fill="#8a3b22"/>
+        <path d="M0 0H40M0 10H40M20 0V10M0 10V20M40 10V20" stroke="#c9b18a" stroke-width="2"/>
+      </pattern>
+      <radialGradient id="glow"><stop offset="0" stop-color="#ffd35c" stop-opacity=".9"/><stop offset="1" stop-color="#ffd35c" stop-opacity="0"/></radialGradient>
+    </defs>
+    <rect width="520" height="200" fill="url(#brick)"/>
+    <rect y="160" width="520" height="40" fill="#1f4a5c"/>
+    <ellipse cx="260" cy="95" rx="230" ry="70" fill="url(#glow)"/>
+    <path d="M60 170 C120 60, 200 150, 260 90 S 400 40, 450 70" fill="none" stroke="#e8a317" stroke-width="18" stroke-linecap="round"/>
+    <path d="M60 170 C120 60, 200 150, 260 90 S 400 40, 450 70" fill="none" stroke="#ffe9a3" stroke-width="6" stroke-linecap="round" stroke-dasharray="2 14"/>
+    <circle cx="452" cy="66" r="4" fill="#000"/>
+  </svg>
+  <p class="caption"><span class="flag" data-why="'Actual photo' but it's clearly a drawing.">Actual unedited photograph</span> of a Lantern Eel near Pawtucket Canal, 1997.</p>
+
+  <h2>Why Is the Lantern Eel in Danger?</h2>
+  <ul>
+    <li><b>Streetlights:</b> Lantern Eels mistake streetlights for their mates and climb poles until they get tired.</li>
+    <li><b>Mill renovations:</b> New brick sealant makes walls too slippery for climbing.</li>
+    <li><b>Tourists:</b> Visitors keep taking eels home as <span class="flag" data-why="Silly emotional claim with no evidence.">nightlights</span>.</li>
+    <li><b>The Moth Shortage:</b> <span class="flag" data-why="Cites a journal that doesn't exist. Try to find it.">According to the <i>Journal of Canal Biology</i> (Vol. 88)</span>, moth populations have dropped <span class="flag" data-why="A population can't drop more than 100%. Check the math!">400%</span>.</li>
+  </ul>
+
+  <div class="ad flag" data-why="The site is selling something. Ask: who benefits if I believe this?">
+    <b>ADVERTISEMENT:</b> Protect your home with <b>EEL-B-GONE™</b> repellent spray! Only $19.99! <u>Order now</u>
+  </div>
+</section>
+
+<!-- ============ FACTS ============ -->
+<section id="facts">
+  <h2>Lantern Eel Facts</h2>
+  <div class="box">
+    <ul>
+      <li>Length: 2–3 feet</li>
+      <li>Weight: <span class="flag" data-why="A 3-foot eel can't weigh 40 lbs and climb walls. Does it make sense?">up to 40 pounds</span></li>
+      <li>Glow color: orange (blue when <span class="flag" data-why="Nonsense detail made to sound scientific.">embarrassed</span>)</li>
+      <li>Can survive out of water for <span class="flag" data-why="Eels can't survive weeks out of water. Compare with a trusted source.">up to six weeks</span></li>
+      <li>Diet: moths, mill dust, and <span class="flag" data-why="Joke detail hidden among real-sounding facts.">leftover fluffernutter sandwiches</span></li>
+      <li>Lifespan: about 15 years</li>
+      <li>Last month, volunteers counted <span class="flag" data-why="Contradicts 'fewer than a dozen' on the Home page.">40 Lantern Eels</span> in one night!</li>
+    </ul>
+  </div>
+
+  <h2>Life Cycle</h2>
+  <ol>
+    <li><b>Egg:</b> Laid inside cracks in the mill bricks.</li>
+    <li><b>Glowling:</b> Babies hatch already glowing and drop into the canal.</li>
+    <li><b>Climber:</b> At age 2, the eel makes its first wall climb.</li>
+    <li><b>Lantern:</b> Adults glow brightest on <span class="flag" data-why="Oddly specific claim with no explanation or evidence.">Tuesdays</span>.</li>
+  </ol>
+
+  <h2>Lantern Eel vs. Regular Eel</h2>
+  <table>
+    <tr><th></th><th>Lantern Eel</th><th>American Eel</th></tr>
+    <tr><td>Glows?</td><td>Yes</td><td>No</td></tr>
+    <tr><td>Climbs walls?</td><td>Yes</td><td>No</td></tr>
+    <tr><td>Found in Lowell?</td><td>Yes</td><td>Yes</td></tr>
+    <tr><td>Listed by wildlife agencies?</td><td class="flag" data-why="The site even admits no official agency recognizes it.">Not yet (they are "covering it up")</td><td>Yes</td></tr>
+  </table>
+</section>
+
+<!-- ============ SIGHTINGS ============ -->
+<section id="sightings">
+  <h2>Recent Sightings</h2>
+  <p>These sightings were reported by our loyal visitors. <span class="flag" data-why="Anonymous, unverified reports from strangers are not evidence.">All reports are 100% true.</span></p>
+  <table>
+    <tr><th>Date</th><th>Location</th><th>Reported By</th><th>Notes</th></tr>
+    <tr><td>Feb 12</td><td>Pawtucket Canal</td><td>EelFan2001</td><td>Glowing bright orange!!</td></tr>
+    <tr><td>Feb 19</td><td>Merrimack Canal</td><td>anonymous</td><td>Saw it climb the whole wall in 3 seconds</td></tr>
+    <tr><td class="flag" data-why="Feb 30 doesn't exist. Look closely at the details.">Feb 30</td><td>Western Canal</td><td>Canal Keeper</td><td>Two eels holding fins</td></tr>
+    <tr><td>Mar 1</td><td>Hamilton Canal</td><td>my cousin</td><td class="flag" data-why="Secondhand story ('my cousin said') isn't firsthand evidence.">My cousin said his friend saw one</td></tr>
+  </table>
+
+  <h2>Report a Sighting</h2>
+  <form id="sightForm" onsubmit="event.preventDefault();document.getElementById('formMsg').textContent='Thank you! Your sighting has been added to our files.';this.reset();">
+    <label for="sn">Your Full Name</label>
+    <input id="sn" type="text">
+    <label for="sa" class="flag" data-why="Asks for personal info it doesn't need. Never share this with unknown sites.">Home Address &amp; Phone Number</label>
+    <input id="sa" type="text">
+    <label for="sl">Canal Location</label>
+    <select id="sl"><option>Pawtucket Canal</option><option>Merrimack Canal</option><option>Western Canal</option><option>Hamilton Canal</option></select>
+    <label for="sd">What did you see?</label>
+    <textarea id="sd" rows="3"></textarea>
+    <button type="submit">SUBMIT</button>
+    <p id="formMsg"></p>
+  </form>
+  <p style="font-size:.8rem"><i>(Practice form only. Nothing is sent anywhere.)</i></p>
+</section>
+
+<!-- ============ SCIENTISTS ============ -->
+<section id="scientists">
+  <h2>Our Scientists</h2>
+  <p>L.E.P.S. works with the <span class="flag" data-why="Vague 'world's top experts' with no names of real institutions.">world's top eel experts</span>.</p>
+
+  <div class="sci">
+    <svg width="80" height="80" viewBox="0 0 80 80" aria-hidden="true"><rect width="80" height="80" fill="#d9cfa6"/><circle cx="40" cy="30" r="16" fill="#c68b59"/><rect x="20" y="50" width="40" height="30" rx="10" fill="#fff"/><rect x="30" y="26" width="8" height="5" fill="#333"/><rect x="42" y="26" width="8" height="5" fill="#333"/></svg>
+    <div>
+      <b class="flag" data-why="No university, no publications you can look up. Search the name.">Prof. Gerald P. Wormsley, PhD</b><br>
+      Chief Eelologist. Prof. Wormsley has studied Lantern Eels for 45 years and <span class="flag" data-why="Bragging instead of evidence. Why can't we read his work?">knows more about them than anyone alive</span>. His research is <span class="flag" data-why="Research that's 'too important to publish' can't be checked.">too important to be published</span>.
+    </div>
+  </div>
+
+  <div class="sci">
+    <svg width="80" height="80" viewBox="0 0 80 80" aria-hidden="true"><rect width="80" height="80" fill="#d9cfa6"/><circle cx="40" cy="30" r="16" fill="#8d5a3b"/><path d="M24 26 Q40 6 56 26" fill="#2b1a10"/><rect x="20" y="50" width="40" height="30" rx="10" fill="#1d4d4f"/></svg>
+    <div>
+      <b>Dr. Becky "Glow" Martins</b><br>
+      Field Researcher. Dr. Martins earned her degree from the <span class="flag" data-why="Made-up school. Check whether it really exists.">International Online Academy of Eel Sciences</span> and leads our night canal patrols.
+    </div>
+  </div>
+
+  <div class="sci">
+    <svg width="80" height="80" viewBox="0 0 80 80" aria-hidden="true"><rect width="80" height="80" fill="#d9cfa6"/><circle cx="40" cy="30" r="16" fill="#f1c9a5"/><rect x="20" y="50" width="40" height="30" rx="10" fill="#e8a317"/><rect x="26" y="14" width="28" height="8" fill="#333"/></svg>
+    <div>
+      <b class="flag" data-why="The anonymous site author calls himself an expert. No credentials.">"Canal Keeper"</b><br>
+      Founder &amp; Webmaster. Has seen <span class="flag" data-why="If he's seen over 1,000, how are there 'fewer than a dozen'?">over 1,000 Lantern Eels</span> personally.
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section id="gallery">
+  <h2>Photo Gallery</h2>
+  <p>Click to enlarge! <span class="flag" data-why="Promises a feature that doesn't work. Sign of a careless, unmaintained site.">(Feature coming soon)</span></p>
+  <div class="gallery">
+    <figure>
+      <svg viewBox="0 0 220 140" role="img" aria-label="Eel on a lamppost"><rect width="220" height="140" fill="#0d1b2a"/><rect x="104" y="30" width="10" height="110" fill="#666"/><circle cx="109" cy="26" r="12" fill="#ffd35c"/><path d="M60 130 C80 100, 130 110, 109 70 S 100 40, 120 40" stroke="#e8a317" stroke-width="8" fill="none" stroke-linecap="round"/></svg>
+      <figcaption>Lantern Eel confused by a streetlight.</figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 220 140" role="img" aria-label="Two eels in water"><rect width="220" height="140" fill="#1f4a5c"/><path d="M20 80 Q60 50 100 80 T180 80" stroke="#e8a317" stroke-width="7" fill="none"/><path d="M20 105 Q60 75 100 105 T180 105" stroke="#e8a317" stroke-width="7" fill="none"/></svg>
+      <figcaption>A mated pair in the Western Canal.</figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 220 140" role="img" aria-label="Blurry orange blob"><defs><filter id="blur"><feGaussianBlur stdDeviation="8"/></filter></defs><rect width="220" height="140" fill="#222"/><ellipse cx="110" cy="70" rx="50" ry="22" fill="#e8a317" filter="url(#blur)"/></svg>
+      <figcaption class="flag" data-why="A blurry blob proves nothing. Real evidence is clear and checkable.">Clearest photo ever taken of a Lantern Eel!</figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 220 140" role="img" aria-label="Eel wearing a hat"><rect width="220" height="140" fill="#8a3b22"/><path d="M30 110 C70 60, 130 120, 170 70" stroke="#e8a317" stroke-width="12" fill="none" stroke-linecap="round"/><rect x="158" y="48" width="24" height="14" fill="#111"/><rect x="152" y="60" width="36" height="5" fill="#111"/></svg>
+      <figcaption class="flag" data-why="Photo is obviously staged or edited. Ask whether an image could be faked.">Lantern Eel in its natural habitat.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ HELP ============ -->
+<section id="help">
+  <h2>How You Can Help</h2>
+  <ol>
+    <li>Turn off your porch light at night so Lantern Eels don't get confused.</li>
+    <li>Write a letter to your city council demanding <b>Eel Crossing</b> signs.</li>
+    <li>Wear an orange ribbon to show you care: <span class="ribbon">🧡 I ❤ LANTERN EELS</span></li>
+    <li>Tell everyone you know! <span class="flag" data-why="Urges you to share before checking. That's how misinformation spreads.">Share this page right away. There's no time to waste!</span></li>
+    <li><span class="flag" data-why="Asks for money with no info on where it goes.">Send a donation</span> to L.E.P.S. Every dollar helps!</li>
+    <li>Buy <b>EEL-B-GONE™</b> for your neighbors. <span class="flag" data-why="Contradiction: a group 'saving' eels sells eel repellent.">(It's safe for eels, we promise!)</span></li>
+  </ol>
+
+  <h2>Sample Letter</h2>
+  <div class="box">
+    <p>Dear City Council,</p>
+    <p>I am writing because the Merrimack Canal Lantern Eel is in danger. Please put up Eel Crossing signs and turn off the streetlights near the canals at night. Thank you for protecting Lowell's most special animal.</p>
+    <p>Sincerely,<br>__________________</p>
+  </div>
+
+  <h2>Contact Us</h2>
+  <p>Email <span class="flag" data-why="Free personal-style email, not an official organization address.">lanterneel_fan99@hotmail.example</span>. <span class="flag" data-why="No mailing address, phone, or 'About Us.' Who's really behind this?">We do not have a mailing address at this time.</span></p>
+</section>
+
+<!-- ============ WALRUS ============ -->
+<section id="walrus">
+  <h2>🌵 Save the Desert Walrus! 🌵</h2>
+  <p class="flag" data-why="Linked 'partner' site by the same author. Hoaxes often cite each other to look real.">A friend of L.E.P.S. writes:</p>
+  <p>Deep in the Arizona desert lives the shy <b>Desert Walrus</b>, which stores water in its tusks and hides from the heat inside giant cactuses. It is <span class="flag" data-why="Another huge claim with zero sources.">the most endangered animal on Earth</span>.</p>
+  <svg class="pic" width="420" height="180" viewBox="0 0 420 180" role="img" aria-label="Cartoon walrus in a desert">
+    <rect width="420" height="180" fill="#f6d7a7"/>
+    <circle cx="360" cy="40" r="22" fill="#ffb703"/>
+    <rect x="60" y="60" width="18" height="90" rx="9" fill="#3a7d44"/><rect x="40" y="85" width="22" height="10" rx="5" fill="#3a7d44"/>
+    <ellipse cx="220" cy="130" rx="80" ry="38" fill="#8b5e3c"/>
+    <circle cx="200" cy="110" r="5" fill="#000"/><circle cx="236" cy="110" r="5" fill="#000"/>
+    <rect x="204" y="128" width="6" height="34" fill="#fff"/><rect x="226" y="128" width="6" height="34" fill="#fff"/>
+  </svg>
+  <p class="caption">The Desert Walrus enjoying a rare rainstorm.</p>
+  <ul>
+    <li>Can go <span class="flag" data-why="Impossible claim. Walruses are Arctic marine mammals.">10 years without water</span></li>
+    <li>Best friends with the Lantern Eel (they write letters)</li>
+  </ul>
+  <p><a href="#home" data-page="home">← Back to the Lantern Eel</a></p>
+</section>
+
+</main>
+
+<footer>
+  <p>You are visitor # <span class="counter">0004812</span></p>
+  <p><span class="flag" data-why="Very old date. Is this info current?">Last updated: March 3, 1999</span> · © L.E.P.S. · <span class="flag" data-why="No real author name anywhere.">Author: "Canal Keeper"</span></p>
+  <p><i>This page is a fictional classroom exercise in evaluating websites. The Lantern Eel and Desert Walrus are not real.</i></p>
+</footer>
+</div>
+
+<script>
+  const pages=[...document.querySelectorAll('main section')];
+  const links=[...document.querySelectorAll('[data-page]')];
+  const hint=document.getElementById('hint'),btn=document.getElementById('tbtn');
+  function current(){return document.querySelector('section.show');}
+  function updateHint(){
+    if(document.body.classList.contains('teacher')){
+      const pageFlags=current().querySelectorAll('.flag').length;
+      const total=document.querySelectorAll('.flag').length;
+      hint.textContent='Teacher Mode: ON. '+pageFlags+' on this tab (+footer), '+total+' total. Hover for reasons.';
+    } else hint.textContent='Teacher Mode: OFF';
+  }
+  function show(id){
+    if(!document.getElementById(id))id='home';
+    pages.forEach(p=>p.classList.toggle('show',p.id===id));
+    document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('active',a.dataset.page===id));
+    updateHint();
+    window.scrollTo(0,0);
+  }
+  links.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();history.replaceState(null,'','#'+a.dataset.page);show(a.dataset.page);}));
+  btn.addEventListener('click',()=>{
+    const on=document.body.classList.toggle('teacher');
+    btn.textContent=on?'Hide Red Flags':'Show Red Flags';
+    updateHint();
+  });
+  show(location.hash.slice(1)||'home');
+</script>
+</body>
+</html>
